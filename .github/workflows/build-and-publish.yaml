@@ -39,8 +39,8 @@ jobs:
     - name: pack-nuget-packages
       run: dotnet pack -o ./nugetPublish --nologo  /p:version=1.0.${{github.run_number}}
 
-     - name: publish-nuget
-       run: dotnet nuget push ./nugetPublish/*.nupkg -s 'github'
+    - name: publish-nuget
+      run: dotnet nuget push ./nugetPublish/*.nupkg -s 'github'
 
     - name: print-directory 
       run: ls -la ./nugetPublish
