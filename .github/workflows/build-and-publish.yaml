@@ -17,6 +17,9 @@ jobs:
       with:
         clean: 'true'
     
+    - name: build it
+      run: dotnet build --nologo
+
     - name: pack-nuget-packages
       run: dotnet pack -o ./nugetPublish --nologo
 
