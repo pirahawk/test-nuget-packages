@@ -28,7 +28,7 @@ jobs:
         clean: 'true'
     
     - name: echo-things
-      run: echo ${{github.workspace}}
+      run: echo '${{github.workspace}} - ${{github.run_id}} - ${{github.run_number}}''
     
     - name: setup-nuget-source
       run: nuget sources add -Name "github" -Source "https://nuget.pkg.github.com/pirahawk/index.json" -username "pirahawk" -password "${{secrets.GITHUB_TOKEN}}" -StorePasswordInClearText -configfile ./nuget.config
@@ -39,8 +39,8 @@ jobs:
     - name: pack-nuget-packages
       run: dotnet pack -o ./nugetPublish --nologo
 
-    - name: publish-nuget
-      run: dotnet nuget push ./nugetPublish/*.nupkg -s 'github'
+    # - name: publish-nuget
+    #   run: dotnet nuget push ./nugetPublish/*.nupkg -s 'github'
 
     - name: print-directory 
       run: ls -la ./nugetPublish
