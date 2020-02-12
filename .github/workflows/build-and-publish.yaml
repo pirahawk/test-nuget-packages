@@ -18,7 +18,7 @@ jobs:
         clean: 'true'
     
     - name: pack-nuget-packages
-      run: dotnet pack -o ./nugetPublish --nologo ./TestNugetPkg/TestNugetPkg.sln
+      run: dotnet pack -o ./nugetPublish --nologo
 
     - name: publish-nuget
       run: dotnet push ./nugetPublish/*.nupkg -s 'https://nuget.pkg.github.com/pirahawk/index.json' --api-key ${{secrets.GITHUB_TOKEN}}
