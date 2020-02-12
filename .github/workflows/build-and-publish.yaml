@@ -23,7 +23,7 @@ jobs:
         nuget-version: 'latest'
     
     - name: setup-nuget-source
-      run: nuget sources add -Name "github" -Source "https://nuget.pkg.github.com/pirahawk/index.json" -username "pirahawk" -password "${{secrets.GITHUB_TOKEN}}"
+      run: nuget sources add -Name "github" -Source "https://nuget.pkg.github.com/pirahawk/index.json" -username "pirahawk" -password "${{secrets.GITHUB_TOKEN}}" -StorePasswordInClearText -configfile ./nuget.config
       
     - name: checkout-repo
       uses: actions/checkout@v2
