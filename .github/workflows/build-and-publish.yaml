@@ -1,0 +1,36 @@
+name: test-building-thing
+on: [push]
+
+jobs:
+  build_nuget:
+    name: Build Application
+    runs-on: ubuntu-latest
+    steps:
+       
+    - name: setup-dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.100'
+      
+    - name: checkout-repo
+      uses: actions/checkout@v2
+      with:
+        clean: 'true'
+    
+    - name: pack-nuget-packages
+      run: dotnet pack -o ./nugetPublish --nologo
+ 
+
+    - name: print-directory 
+      run: ls -la ./nugetPublish
+
+
+
+  # print_stuff:
+  #   name: Print Stuff
+  #   runs-on: ubuntu-latest
+  #   steps:     
+  #   - name: Dump GitHub context
+  #     env:
+  #       GITHUB_CONTEXT: ${{ toJson(github) }}
+  #     run: echo "$GITHUB_CONTEXT"
