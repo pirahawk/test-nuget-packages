@@ -21,18 +21,18 @@ jobs:
       uses: nuget/setup-nuget@v1
       with:
         nuget-version: 'latest'
-    
-    - name: echo-things
-      run: echo ${{github.workspace}}
-    
-    - name: setup-nuget-source
-      run: nuget sources add -Name "github" -Source "https://nuget.pkg.github.com/pirahawk/index.json" -username "pirahawk" -password "${{secrets.GITHUB_TOKEN}}" -StorePasswordInClearText -configfile ${{github.workspace}}/nuget.config
-      
+
     - name: checkout-repo
       uses: actions/checkout@v2
       with:
         clean: 'true'
     
+    - name: echo-things
+      run: echo ${{github.workspace}}
+    
+    - name: setup-nuget-source
+      run: nuget sources add -Name "github" -Source "https://nuget.pkg.github.com/pirahawk/index.json" -username "pirahawk" -password "${{secrets.GITHUB_TOKEN}}" -StorePasswordInClearText -configfile ./nuget.config
+
     - name: build it
       run: dotnet build --nologo
 
