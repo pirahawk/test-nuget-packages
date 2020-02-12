@@ -16,6 +16,14 @@ jobs:
     #   uses: nuget/setup-nuget@v1
     #   with:
     #     nuget-version: 'latest'
+
+    - name: setup-nuget
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-version: 'latest'
+    
+    - name: setup-nuget-source
+      run: nuget sources add -Name "github" -Source "https://nuget.pkg.github.com/pirahawk/index.json" -username "pirahawk" -password "${{secrets.GITHUB_TOKEN}}"
       
     - name: checkout-repo
       uses: actions/checkout@v2
@@ -29,7 +37,7 @@ jobs:
       run: dotnet pack -o ./nugetPublish --nologo
 
     - name: publish-nuget
-      run: dotnet nuget push ./nugetPublish/*.nupkg -s 'https://nuget.pkg.github.com/pirahawk/index.json' --api-key ${{secrets.GITHUB_TOKEN}}
+      run: dotnet nuget push ./nugetPublish/*.nupkg -s 'github'
 
     - name: print-directory 
       run: ls -la ./nugetPublish
