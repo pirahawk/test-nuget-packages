@@ -11,11 +11,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '3.1.100'
-    
-    # - name: setup-nuget
-    #   uses: nuget/setup-nuget@v1
-    #   with:
-    #     nuget-version: 'latest'
 
     - name: setup-nuget
       uses: nuget/setup-nuget@v1
@@ -28,7 +23,8 @@ jobs:
         clean: 'true'
     
     - name: echo-things
-      run: echo '${{github.workspace}} - ${{github.run_id}} - ${{github.run_number}}'
+      run: echo ' ${GITHUB_RUN_ID}'
+      #run: echo ' ${{github.workspace}} - ${{github.run_id}} - ${{github.run_number}}'
     
     - name: setup-nuget-source
       run: nuget sources add -Name "github" -Source "https://nuget.pkg.github.com/pirahawk/index.json" -username "pirahawk" -password "${{secrets.GITHUB_TOKEN}}" -StorePasswordInClearText -configfile ./nuget.config
