@@ -23,7 +23,7 @@ jobs:
         clean: 'true'
     
     - name: echo-things
-      run: echo ' ${GITHUB_RUN_ID}'
+      run: echo '$GITHUB_RUN_ID - $GITHUB_REF - $GITHUB_RUN_NUMBER - $GITHUB_EVENT_NAME'
       #run: echo ' ${{github.workspace}} - ${{github.run_id}} - ${{github.run_number}}'
     
     - name: setup-nuget-source
