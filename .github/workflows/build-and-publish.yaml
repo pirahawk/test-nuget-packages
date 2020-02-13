@@ -59,3 +59,7 @@ jobs:
     - name: echo-things-if
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: echo 'yup'
+
+    - name: echo-things-if-branch
+      if: github.event_name == 'push' && github.ref != 'refs/heads/master'
+      run: echo 'yup'
